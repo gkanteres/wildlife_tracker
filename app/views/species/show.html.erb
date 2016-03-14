@@ -6,6 +6,9 @@
   <ul>
     <% @species.sightings.each do |sighting| %>
       <li>
+        <% if sighting.region != nil %>
+        Region: <%= sighting.region.name %>
+        <% end %>
         <%= sighting.date %> ( Lat: <%= sighting.latitude %> Long: <%= sighting.longitude %> ) |
         <%= link_to "Edit", edit_species_sighting_path(@species, sighting) %>
         <%= link_to "Delete", species_sighting_path(@species, sighting),

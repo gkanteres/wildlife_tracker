@@ -1,5 +1,9 @@
 class SightingsController < ApplicationController
 
+  def index
+    @sightings = Sighting.all
+  end
+
   def new
     @species = Species.find(params[:species_id])
     @sighting = @species.sightings.new
@@ -39,7 +43,7 @@ class SightingsController < ApplicationController
 
   private
     def sighting_params
-      params.require(:sighting).permit(:date, :latitude, :longitude)
+      params.require(:sighting).permit(:date, :latitude, :longitude, :region_id)
     end
 
 end

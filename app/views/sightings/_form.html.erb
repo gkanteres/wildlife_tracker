@@ -7,6 +7,10 @@
   <%= f.text_field :latitude %>
   <%= f.label :longitude %>
   <%= f.text_field :longitude %>
+
+  <%= f.label :region %>
+  <%= select("sighting", "region_id", Region.all.collect {|r| [r.name, r.id] }, {prompt: "Select Region"}) %>
+
   <p><%= f.submit %></p>
 <% end %>
 

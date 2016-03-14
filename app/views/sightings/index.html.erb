@@ -1,0 +1,27 @@
+<h1>Sightings</h1>
+
+<%= form_tag('/report', method: 'get') do %>
+  <%= label_tag(:start_date, 'Start date') %>
+  <%= date_field_tag :start_date %>
+  <%= label_tag(:end_date, 'End date') %>
+  <%= date_field_tag :end_date %>
+  <p><%= submit_tag('Generate Report') %></p>
+<% end %>
+
+<ul>
+  <% @sightings.each do |sighting| %>
+    <li>
+      Species: <%= sighting.species.name %>
+      <% if sighting.region != nil %>
+      Region: <%= sighting.region.name %>
+      <% end %>
+      <%= sighting.date %> ( Lat: <%= sighting.latitude %> Long: <%= sighting.longitude %> ) |
+      <%= link_to "Edit", edit_species_sighting_path(sighting.species, sighting) %>
+      <%= link_to "Delete", species_sighting_path(sighting.species, sighting),
+                            data: { confirm: "Are you sure?",
+                                    method: "delete" }%>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
