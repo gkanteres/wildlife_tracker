@@ -1,3 +1,38 @@
 <h1><%= @species.name %></h1>
 
+<% if @species.sightings.any? %>
+  <h4>Here are the sightings for this species:</h4>
+
+  <ul>
+    <% @species.sightings.each do |sighting| %>
+      <li>
+        <%= sighting.date %> ( Lat: <%= sighting.latitude %> Long: <%= sighting.longitude %> ) |
+        <%= link_to "Edit", edit_species_sighting_path(@species, sighting) %>
+        <%= link_to "Delete", species_sighting_path(@species, sighting),
+                              data: { confirm: "Are you sure?",
+                                      method: "delete" }%>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p> <%= link_to "Add Sighting", new_species_sighting_path(@species) %> </p>
+
+<p>
+  <%= link_to edit_species_path(@species) do %>
+    Edit <%= @species.name %>
+  <% end %>
+</p>
+
+<p>
+  <%= link_to(species_path(@species),
+    data: {
+      confirm: 'You sure?',
+      method: 'delete'
+    }
+  ) do %>
+    Delete <%= @species.name %>
+  <% end %>
+</p>
+
 <p><%= link_to "Return to Species", species_index_path %></p>

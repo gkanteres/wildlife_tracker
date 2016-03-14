@@ -1,0 +1,13 @@
+<%= render('layouts/errors', :object => @sighting) %>
+
+<%= form_for [@species, @sighting] do |f| %>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+  <%= f.label :latitude %>
+  <%= f.text_field :latitude %>
+  <%= f.label :longitude %>
+  <%= f.text_field :longitude %>
+  <p><%= f.submit %></p>
+<% end %>
+
+<%= link_to "Back to Species", species_path(@species) %>
