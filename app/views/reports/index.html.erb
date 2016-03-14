@@ -1,0 +1,15 @@
+<% if @sightings.any? %>
+  <h4>Here are the sightings that match your query:</h4>
+
+  <ul>
+    <% @sightings.each do |sighting| %>
+      <li>
+        <%= sighting.species.name %> Region: <%= sighting.region.name %> Date: <%= sighting.date %> ( Lat: <%= sighting.latitude %> Long: <%= sighting.longitude %> ) |
+        <%= link_to "Edit", edit_species_sighting_path(sighting.species, sighting) %>
+        <%= link_to "Delete", species_sighting_path(sighting.species, sighting),
+                              data: { confirm: "Are you sure?",
+                                      method: "delete" }%>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
