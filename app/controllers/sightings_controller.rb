@@ -2,6 +2,7 @@ class SightingsController < ApplicationController
 
   def index
     @sightings = Sighting.all
+    @region_options_array = Region.all.map {|r| [r.name, r.id] }
   end
 
   def new

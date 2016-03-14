@@ -6,8 +6,8 @@
   <%= label_tag(:end_date, 'End date') %>
   <%= date_field_tag :end_date %>
   <br>
-  <%= label_tag(:region, 'Region') %>
-  <%= select_tag :region %>
+  <%= label_tag :region %>
+  <%= select_tag(:region_id, options_for_select(@region_options_array), {prompt: "Select Region"}) %>
   <p><%= submit_tag('Generate Report') %></p>
 <% end %>
 
